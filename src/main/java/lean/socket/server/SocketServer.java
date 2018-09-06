@@ -73,9 +73,7 @@ public class SocketServer {
             Address address = new Address();
             address.setCountry("中国");
             address.setProvince("河南省");
-            address.setCity("新乡市");
-            address.setStreet("榆林乡万泉庄");
-            user.setName("王浩");
+            user.setName("wanghao");
             user.setAge(29);
             user.setAddress(address);
             while(!readLine.equals("bye")){

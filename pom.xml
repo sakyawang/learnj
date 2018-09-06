@@ -2,40 +2,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>test</groupId>
-    <artifactId>test</artifactId>
+    <groupId>me.sakyawang</groupId>
+    <artifactId>learn</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>lean</name>
-
-    <repositories>
-        <repository>
-            <id>nexus</id>
-            <name>Team Nexus Repository</name>
-            <url>http://10.2.6.1:8081/repository/maven-public/</url>
-        </repository>
-    </repositories>
-
-    <pluginRepositories>
-        <pluginRepository>
-            <id>nexus</id>
-            <name>Team Nexus Repository</name>
-            <url>http://10.2.6.1:8081/repository/maven-public/</url>
-        </pluginRepository>
-    </pluginRepositories>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.apache.httpcomponents.version>4.5.5</org.apache.httpcomponents.version>
         <vdsm-jsonrpc-java.version>1.2.5</vdsm-jsonrpc-java.version>
     </properties>
-    <distributionManagement>
-        <repository>
-            <id>releases</id>
-            <url>http://10.2.6.1:8081/repository/thirdparty/</url>
-        </repository>
-    </distributionManagement>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -87,16 +65,6 @@
             <groupId>org.ovirt.vdsm-jsonrpc-java</groupId>
             <artifactId>vdsm-jsonrpc-java-client</artifactId>
             <version>${vdsm-jsonrpc-java.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.com.rivercloud</groupId>
-            <artifactId>component</artifactId>
-            <version>1.0.7</version>
-        </dependency>
-        <dependency>
-            <groupId>org.nlpcn</groupId>
-            <artifactId>elasticsearch-sql</artifactId>
-            <version>5.2.1.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -154,6 +122,11 @@
             <artifactId>jmh-generator-annprocess</artifactId>
             <version>1.4.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.3</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -163,6 +136,9 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <compilerArguments>
+                        <bootclasspath>/home/sakyawang/soft/jdk1.8.0_172/jre/lib/jce.jar:/home/sakyawang/soft/jdk1.8.0_172/jre/lib/rt.jar</bootclasspath>
+                    </compilerArguments>
                 </configuration>
             </plugin>
             <plugin>

@@ -3,7 +3,6 @@ package lean.http;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.sun.org.apache.xml.internal.security.utils.Base64;
-import com.wzqj.compoent.encrypt.MD5;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -17,13 +16,14 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.CharArrayBuffer;
 import org.apache.http.util.EntityUtils;
 
-import javax.swing.text.html.parser.Entity;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -132,7 +132,13 @@ public class WafClient {
 
     private static String generalSign(String head, String body, String time) {
         String sign = new StringBuilder().append(head).append(".").append(body).append(".").append(time).toString();
-        return MD5.sign(sign);
+        MessageDigest md5 = null;
+        try {
+            md5 = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return String.valueOf(md5.digest(sign.getBytes()));
     }
 
     public static JSONObject addDomain(String ip, String name, String domain, String filePath) throws IOException {

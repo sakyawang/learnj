@@ -23,8 +23,6 @@ public class Server {
         address.setCountry("中国");
         address.setProvince("河南省");
         address.setCity("新乡市");
-        address.setStreet("榆林乡万泉庄");
-        user.setName("王浩");
         user.setAge(29);
         user.setAddress(address);
         System.out.println(line);

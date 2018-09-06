@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
         User user = new User();
-        user.setName("王浩");
+        user.setName("wanghao");
         user.setAge(29);
         System.out.println(user.hashCode());
         Main main = new Main();
