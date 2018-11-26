@@ -1,12 +1,14 @@
 package lean.ssh;
 
-import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 import lean.http.waf.DeviceInfo;
 import org.apache.commons.pool2.BaseKeyedPooledObjectFactory;
 import org.apache.commons.pool2.PooledObject;
+
+import java.io.ByteArrayOutputStream;
+import java.util.Arrays;
 
 public class SessionFactory extends BaseKeyedPooledObjectFactory<DeviceInfo, Session> {
 
@@ -31,15 +33,41 @@ public class SessionFactory extends BaseKeyedPooledObjectFactory<DeviceInfo, Ses
     public static void main(String[] args) {
         SessionFactory factory = new SessionFactory();
         DeviceInfo deviceInfo = new DeviceInfo();
-        deviceInfo.setIp("10.2.5.50");
-        deviceInfo.setUser("admin");
-        deviceInfo.setPwd("admin");
+        deviceInfo.setIp("10.2.15.31");
+        deviceInfo.setUser("root");
+        deviceInfo.setPwd("Cl0udM@p!@#");
         deviceInfo.setPort(22);
         try {
+            final ByteArrayOutputStream baos = new ByteArrayOutputStream();
             Session session = factory.create(deviceInfo);
-            Channel channel = session.openChannel("exec");
-            ((ChannelExec)channel).setCommand("enable");
+            ChannelExec channel = (ChannelExec) session.openChannel("exec");
+            channel.setCommand("ovs-vsctl --columns=name list interface | grep vnet | awk '{print $3}'");
+            channel.setOutputStream(baos);
             channel.connect();
+            while (!channel.isClosed()) {
+                Thread.sleep(500);
+            }
+            String result = baos.toString("utf-8");
+            String[] split = result.split("\n");
+            System.out.println(split.length);
+            Arrays.asList(split).forEach(System.out::println);
+            baos.close();
+            channel.disconnect();
+            session = factory.create(deviceInfo);
+            ChannelExec exec = (ChannelExec) session.openChannel("exec");
+            final ByteArrayOutputStream baos1 = new ByteArrayOutputStream();
+            exec.setCommand("ovs-vsctl list bridge | grep name | awk '{print $3}'");
+            exec.setOutputStream(baos1);
+            exec.connect();
+            while (!exec.isClosed()) {
+                Thread.sleep(1000);
+            }
+            result = baos1.toString("utf-8");
+            System.out.println(result);
+            baos1.close();
+            exec.disconnect();
+            session.disconnect();
+            System.exit(0);
         } catch (Exception e) {
             e.printStackTrace();
         }

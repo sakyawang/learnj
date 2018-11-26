@@ -7,10 +7,10 @@ public class BookFacadeImpl implements BookFacade {
 
     @Override
     public void addBook() {
-        System.out.printf("添加书籍");
+        System.out.println("添加书籍");
     }
 
     public void sayHello(){
-        System.out.printf("hello");
+        System.out.println("hello");
     }
 }

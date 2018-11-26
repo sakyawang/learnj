@@ -32,7 +32,7 @@ public class BookFacadeProxy implements InvocationHandler {
         Object result = null;
         System.out.println("start");
         result = method.invoke(target, args);
-        System.out.printf("end");
+        System.out.println("end");
         return result;
     }
 }

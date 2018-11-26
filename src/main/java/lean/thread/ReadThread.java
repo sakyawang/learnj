@@ -12,6 +12,8 @@ public class ReadThread implements Runnable{
 
     private CountDownLatch countDownLatch;
 
+    public ReadThread(){}
+
     public ReadThread(Socket socket, CountDownLatch countDownLatch){
         this.socket = socket;
         this.countDownLatch = countDownLatch;
@@ -19,7 +21,8 @@ public class ReadThread implements Runnable{
 
     @Override
     public void run() {
-
+        System.out.println("read");
+        throw new RuntimeException("error");
     }
 
 }

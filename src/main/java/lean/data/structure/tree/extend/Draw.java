@@ -3,6 +3,7 @@ package lean.data.structure.tree.extend;
 import com.alibaba.fastjson.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -277,5 +278,14 @@ public class Draw {
         DrawTree drawTree = Draw.buchheim(tree);
         List<TreeNode> treeList = toList(drawTree);
         System.out.println(JSONArray.toJSONString(treeList));
+        int width = 1000;
+        int height = 1000;
+        int radius = 10;
+        JFrame jFrame = new JFrame("树图");
+        jFrame.setSize(width, height);
+        jFrame.setLocationRelativeTo(null);
+        jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        jFrame.setContentPane(new Point(drawTree, width, height, radius));
+        jFrame.setVisible(true);
     }
 }

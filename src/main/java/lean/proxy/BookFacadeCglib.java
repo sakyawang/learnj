@@ -39,8 +39,6 @@ public class BookFacadeCglib implements MethodInterceptor {
         proxy.invokeSuper(Proxy, args);
         System.out.println("事物结束");
         return null;
-
-
     }
 
 }

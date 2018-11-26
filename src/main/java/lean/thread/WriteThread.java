@@ -12,6 +12,8 @@ public class WriteThread implements Runnable {
 
     private BufferedOutputStream writer;
 
+    public WriteThread() {}
+
     public WriteThread(CountDownLatch countDownLatch, BufferedOutputStream writer){
         this.countDownLatch = countDownLatch;
         this.writer = writer;
@@ -19,7 +21,7 @@ public class WriteThread implements Runnable {
 
     @Override
     public void run() {
-
+        System.out.println("write");
     }
 
 }
