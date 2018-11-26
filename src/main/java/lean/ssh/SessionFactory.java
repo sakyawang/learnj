@@ -35,7 +35,7 @@ public class SessionFactory extends BaseKeyedPooledObjectFactory<DeviceInfo, Ses
         DeviceInfo deviceInfo = new DeviceInfo();
         deviceInfo.setIp("10.2.15.31");
         deviceInfo.setUser("root");
-        deviceInfo.setPwd("Cl0udM@p!@#");
+        deviceInfo.setPwd("root");
         deviceInfo.setPort(22);
         try {
             final ByteArrayOutputStream baos = new ByteArrayOutputStream();
