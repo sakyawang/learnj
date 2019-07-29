@@ -1,5 +1,7 @@
 package lean.orm.dto;
 
+import com.google.common.base.MoreObjects;
+
 public class PersonDTO {
 
     private String myName;
@@ -30,5 +32,14 @@ public class PersonDTO {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("myName", myName)
+                .add("address", address)
+                .add("age", age)
+                .toString();
     }
 }

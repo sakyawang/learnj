@@ -37,7 +37,7 @@ public class Converter {
         });
         PersonDTO dtoObj1 = (PersonDTO) dtoObj;
         System.out.println(dtoObj1.getMyName());
-        return null;
+        return dtoObj1;
     }
 
     public static void main(String[] args) throws IllegalAccessException, InstantiationException {
@@ -47,7 +47,8 @@ public class Converter {
         person.setAge(30);
         person.setAddress("peking");
         try {
-            Converter.toDto(person);
+            PersonDTO dto = (PersonDTO) Converter.toDto(person);
+            System.out.println(dto.toString());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

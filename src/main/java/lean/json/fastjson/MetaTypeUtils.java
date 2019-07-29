@@ -1,3 +1,4 @@
+/*
 package lean.json.fastjson;
 
 import com.alibaba.fastjson.annotation.JSONField;
@@ -46,7 +47,7 @@ public class MetaTypeUtils extends TypeUtils {
             JSONField annotation = method.getAnnotation(JSONField.class);
 
             if (annotation == null) {
-                annotation = getSupperMethodAnnotation(clazz, method);
+                annotation = getSuperMethodAnnotation(clazz, method);
             }
 
             if (annotation != null) {
@@ -67,7 +68,7 @@ public class MetaTypeUtils extends TypeUtils {
                         }
                     }
 
-                    fieldInfoMap.put(propertyName, new FieldInfo(propertyName, method, null, ordinal, serialzeFeatures));
+                    fieldInfoMap.put(propertyName, new FieldInfo(propertyName, method, null, null, ordinal, serialzeFeatures));
                     continue;
                 }
 
@@ -110,7 +111,7 @@ public class MetaTypeUtils extends TypeUtils {
                     continue;
                 }
 
-                Field field = ParserConfig.getField(clazz, propertyName);
+                Field field = ParserConfig.getFieldFromCache(clazz, propertyName);
 
                 if (field != null) {
                     JSONField fieldAnnotation = field.getAnnotation(JSONField.class);
@@ -328,4 +329,4 @@ public class MetaTypeUtils extends TypeUtils {
 
         return false;
     }
-}
+}*/

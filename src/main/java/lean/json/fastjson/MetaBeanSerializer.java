@@ -1,3 +1,4 @@
+/*
 package lean.json.fastjson;
 
 import com.alibaba.fastjson.JSON;
@@ -15,11 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+*/
 /**
  * fastjson不支持私有或保护属性的序列化，使用本类支持。
  * 注意：仅实现了序列化，未实现反序列化
- * Created by 张三丰 on 2015-10-14.
- */
+ *//*
+
 public class MetaBeanSerializer extends JavaBeanSerializer {
 
     private final FieldSerializer[] getters;
@@ -211,4 +213,4 @@ public class MetaBeanSerializer extends JavaBeanSerializer {
             serializer.setContext(parent);
         }
     }
-}
+}*/

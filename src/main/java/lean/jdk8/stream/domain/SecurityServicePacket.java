@@ -1,5 +1,7 @@
 package lean.jdk8.stream.domain;
 
+import com.google.common.base.MoreObjects;
+
 public class SecurityServicePacket {
 
     private long id;
@@ -36,5 +38,14 @@ public class SecurityServicePacket {
 
     public void setPolicyState(String policyState) {
         this.policyState = policyState;
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("id", id)
+                .add("type", type)
+                .add("policyState", policyState)
+                .toString();
     }
 }

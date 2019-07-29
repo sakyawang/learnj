@@ -1,4 +1,4 @@
-package lean.netty;
+package lean.netty.discard.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -50,7 +50,7 @@ public class DiscardServer {
     }
 
     public static void main(String[] args) throws Exception {
-        int port = 8888;
+        int port = 9999;
         /*if (args.length > 0) {
             port = Integer.parseInt(args[0]);
         } else {

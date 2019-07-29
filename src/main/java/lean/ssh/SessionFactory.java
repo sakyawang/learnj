@@ -33,15 +33,29 @@ public class SessionFactory extends BaseKeyedPooledObjectFactory<DeviceInfo, Ses
     public static void main(String[] args) {
         SessionFactory factory = new SessionFactory();
         DeviceInfo deviceInfo = new DeviceInfo();
-        deviceInfo.setIp("10.2.15.31");
-        deviceInfo.setUser("root");
-        deviceInfo.setPwd("root");
+        deviceInfo.setIp("10.2.15.30");
+        deviceInfo.setUser("sakyawang");
+        deviceInfo.setPwd("Cloudm@p");
         deviceInfo.setPort(22);
         try {
             final ByteArrayOutputStream baos = new ByteArrayOutputStream();
             Session session = factory.create(deviceInfo);
+            session.sendKeepAliveMsg();
             ChannelExec channel = (ChannelExec) session.openChannel("exec");
-            channel.setCommand("ovs-vsctl --columns=name list interface | grep vnet | awk '{print $3}'");
+            channel.setCommand("sudo service network status");
+            channel.setOutputStream(baos);
+            channel.connect();
+            while (!channel.isClosed()) {
+                Thread.sleep(500);
+            }
+            String result = baos.toString("utf-8");
+            String[] split = result.split("\n");
+            System.out.println(split.length);
+            Arrays.asList(split).forEach(System.out::println);
+            baos.close();
+            channel.disconnect();
+            session.disconnect();
+            /*channel.setCommand("ovs-vsctl --columns=name list interface | grep vnet | awk '{print $3}'");
             channel.setOutputStream(baos);
             channel.connect();
             while (!channel.isClosed()) {
@@ -66,7 +80,7 @@ public class SessionFactory extends BaseKeyedPooledObjectFactory<DeviceInfo, Ses
             System.out.println(result);
             baos1.close();
             exec.disconnect();
-            session.disconnect();
+            session.disconnect();*/
             System.exit(0);
         } catch (Exception e) {
             e.printStackTrace();

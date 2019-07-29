@@ -5,7 +5,6 @@ import com.alibaba.fastjson.serializer.SerializeConfig;
 
 /**
  * fastJson不支持对象中私有属性的转换
- * Created by 魔力鸟 on 2015-10-15.
  */
 public final class MetaJsonUtil {
 
@@ -26,7 +25,7 @@ public final class MetaJsonUtil {
     public static String getJSONString(Object target) {
         if (target != null) {
             SerializeConfig globalInstance = SerializeConfig.getGlobalInstance();
-            globalInstance.put(target.getClass(), new MetaBeanSerializer(target.getClass()));
+//            globalInstance.put(target.getClass(), new MetaBeanSerializer(target.getClass()));
             return JSON.toJSONString(target, globalInstance);
         }else{
             return "{}";

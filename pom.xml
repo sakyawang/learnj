@@ -12,7 +12,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.apache.httpcomponents.version>4.5.5</org.apache.httpcomponents.version>
-        <vdsm-jsonrpc-java.version>1.2.5</vdsm-jsonrpc-java.version>
+        <io.netty.version>4.1.34.Final</io.netty.version>
     </properties>
     <dependencies>
         <dependency>
@@ -37,6 +37,11 @@
             <version>2.4</version>
         </dependency>
         <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.9.6</version>
@@ -59,17 +64,12 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>5.0.0.Alpha2</version>
+            <version>${io.netty.version}</version>
         </dependency>
         <dependency>
             <groupId>com.asprise.ocr</groupId>
             <artifactId>java-ocr-api</artifactId>
             <version>[15,)</version>
-        </dependency>
-        <dependency>
-            <groupId>org.ovirt.vdsm-jsonrpc-java</groupId>
-            <artifactId>vdsm-jsonrpc-java-client</artifactId>
-            <version>${vdsm-jsonrpc-java.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -130,7 +130,53 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.3</version>
+            <version>1.2.54</version>
+        </dependency>
+        <dependency>
+            <groupId>io.reactivex.rxjava2</groupId>
+            <artifactId>rxjava</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.reactivestreams</groupId>
+            <artifactId>reactive-streams</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.reactivestreams</groupId>
+            <artifactId>reactive-streams-tck</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.10.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-orgjson</artifactId>
+            <version>0.10.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.10.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.10.5</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.10</version>
+        </dependency>
+        <dependency>
+            <groupId>net.ipip</groupId>
+            <artifactId>ipdb</artifactId>
+            <version>1.1.2</version>
         </dependency>
     </dependencies>
     <build>
@@ -142,7 +188,9 @@
                     <source>1.8</source>
                     <target>1.8</target>
                     <compilerArguments>
-                        <bootclasspath>/home/sakyawang/soft/jdk1.8.0_172/jre/lib/jce.jar:/home/sakyawang/soft/jdk1.8.0_172/jre/lib/rt.jar</bootclasspath>
+                        <bootclasspath>
+                            /home/sakyawang/soft/jdk1.8.0_172/jre/lib/jce.jar:/home/sakyawang/soft/jdk1.8.0_172/jre/lib/rt.jar
+                        </bootclasspath>
                     </compilerArguments>
                 </configuration>
             </plugin>

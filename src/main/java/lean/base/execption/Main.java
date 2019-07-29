@@ -12,6 +12,11 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        foo();
+        First first = new First();
+        try {
+            first.foo();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
     }
 }
