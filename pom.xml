@@ -11,7 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <org.apache.httpcomponents.version>4.5.5</org.apache.httpcomponents.version>
+        <org.apache.httpcomponents.version>4.5.13</org.apache.httpcomponents.version>
         <io.netty.version>4.1.34.Final</io.netty.version>
     </properties>
     <dependencies>
